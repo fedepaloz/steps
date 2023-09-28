@@ -29,7 +29,6 @@ export default function App() {
     <div>
       {close && (
         <div className="steps">
-          <button onClick={handleClose}>X</button>
           <div className="numbers">
             <div className={`${step >= 0 ? "active" : ""}`}>1</div>
             <div className={`${step >= 1 ? "active" : ""}`}>2</div>
@@ -39,21 +38,26 @@ export default function App() {
             step {step + 1}:{messages[step]}
           </p>
           <div className="buttons">
-            <button
-              onClick={handlePrevious}
-              style={{ backgroundColor: "#7590f2", color: "#fff" }}
-            >
-              previous
-            </button>
-            <button
-              onClick={handleNext}
-              style={{ backgroundColor: "#7590f2", color: "#fff" }}
-            >
-              next
-            </button>
+            <Button bgColor="#7590f2" textColor="#fff" onClick={handlePrevious}>
+              <span>{"<--"}</span>previous
+            </Button>
+            <Button bgColor="#7590f2" textColor="#fff" onClick={handleNext}>
+              next<span>{"-->"}</span>
+            </Button>
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function Button({ textColor, bgColor, onClick, children }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{ backgroundColor: bgColor, color: textColor }}
+    >
+      {children}
+    </button>
   );
 }
